@@ -28,4 +28,4 @@ jobs:
           https://api.github.com/repos/{org}/{repo}/check-runs \
           -d '{"name":"build", "head_sha": "'"$BUILD_COMMIT"'", "status": "completed", "conclusion": "success" }'
 
-    
+
