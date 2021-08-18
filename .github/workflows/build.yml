@@ -16,7 +16,6 @@ jobs:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Check quality gate
-        if: curl -v --silent -u $SONAR_PASSWORD https://sonar-staging.nmarket.tech/api/qualitygates/project_status?projectKey=matajer 2>&1  | grep "ERROR"
-        run: exit 1
+        run: if curl -v --silent -u $SONAR_PASSWORD https://sonar-staging.nmarket.tech/api/qualitygates/project_status?projectKey=matajer 2>&1  | grep "ERROR"; then exit 1; else exit 0; fi
         env:
           SONAR_PASSWORD: ${{ secrets.SONAR_PASSWORD }}
